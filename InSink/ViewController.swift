@@ -40,9 +40,7 @@ class ViewController: NSViewController {
             stopButton.enabled = true
             
             monitor = FileSystemEventMonitor(
-                pathsToWatch: [
-                    "/Users/Ben/Desktop",
-                    "/Users/Ben/Download"],
+                pathsToWatch: directories,
                 latency: 1,
                 watchRoot: true,
                 queue: dispatch_get_main_queue()) { (events:[FileSystemEvent])->() in
@@ -74,13 +72,13 @@ class ViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         if(userDefaults.stringForKey("extensions") != nil){
-            self.extensions  = userDefaults.stringForKey("extensions")!.componentsSeparatedByString(", ")
+            self.extensions  = parseInput(userDefaults.stringForKey("extensions")!)
         }
         if(userDefaults.stringForKey("directories") != nil){
-            self.directories  = userDefaults.stringForKey("directories")!.componentsSeparatedByString(", ")
+            self.directories  = parseInput(userDefaults.stringForKey("directories")!)
         }
         if(userDefaults.stringForKey("ignoredPaths") != nil){
-            self.ignoredPaths = userDefaults.stringForKey("ignoredPaths")!.componentsSeparatedByString(", ")
+            self.ignoredPaths = parseInput(userDefaults.stringForKey("ignoredPaths")!)
         }
         
         extensionsTextField.stringValue = userDefaults.stringForKey("extensions")!
@@ -94,8 +92,9 @@ class ViewController: NSViewController {
         }
     }
     
+    //Tested
     func parseInput(input : String) -> [String]{
-        return input.stringByReplacingOccurrencesOfString(" ", withString: "").componentsSeparatedByString(", ")
+        return input.stringByReplacingOccurrencesOfString(" ", withString: "").stringByReplacingOccurrencesOfString(".", withString: "").componentsSeparatedByString(",")
     }
     
     func configIsValidToRun() -> Bool {
@@ -113,7 +112,7 @@ class ViewController: NSViewController {
     func handleEvents(events: [FileSystemEvent]) {
         for event in events{
             if debug{
-                writeToLog("Captured event " + event.description + " with flag " + String(event.flag));
+                writeToLog("--> Captured event " + event.description);
             }
             if eventIsNotHandledBefore(Int(event.ID)){
                 handleEvent(event)
@@ -121,6 +120,7 @@ class ViewController: NSViewController {
         }
     }
     
+    //Tested
     func eventIsNotHandledBefore(id: Int) -> Bool{
         if(id > lastProcessedId){
             return true
@@ -132,6 +132,8 @@ class ViewController: NSViewController {
         case FlagItemCreated = "ItemCreated"
         case FlagItemRemoved = "ItemRemoved"
         case FlagItemCreatedRemoved = "ItemCreated, ItemRemoved"
+        case FlagItemRenamedChangeOwner = "ItemRenamed, ItemChangeOwner"
+        case FlagItemMetaModifiedChangeOwner = "ItemInodeMetaMod, ItemModified, ItemChangeOwner"
         case FlagItemInodeMetaMod = "ItemInodeMetaMod"
         case FlagItemRenamed = "ItemRenamed"
         case FlagItemModified = "ItemModified"
@@ -140,7 +142,7 @@ class ViewController: NSViewController {
     func handleEvent(event: FileSystemEvent) {
         if  pathContainsJrcRoot(event.path) &&  hasCorrectExtension(event.path) && pathIsNotIgnored(event.path){
             if debug{
-                writeToLog("--> Handling event for path " + event.path)
+                writeToLog("--> Handling event " + event.description)
             }
             switch event.flag.description {
             case EventFlag.FlagItemCreated.rawValue:
@@ -149,6 +151,10 @@ class ViewController: NSViewController {
                 handleRemovedEvent(event)
             case EventFlag.FlagItemCreatedRemoved.rawValue:
                 handleRemovedEvent(event)
+            case EventFlag.FlagItemRenamedChangeOwner.rawValue:
+                handleModifiedEvent(event)
+            case EventFlag.FlagItemMetaModifiedChangeOwner.rawValue:
+                handleModifiedEvent(event)
             case EventFlag.FlagItemInodeMetaMod.rawValue:
                 handleModifiedEvent(event)
             case EventFlag.FlagItemRenamed.rawValue:
@@ -156,9 +162,7 @@ class ViewController: NSViewController {
             case EventFlag.FlagItemModified.rawValue:
                 handleModifiedEvent(event)
             default:
-                if debug{
-                    writeToLog("--> No event found for value " + String(event.flag.rawValue) + " and path " + event.description)
-                }
+                writeToLog("--> NEW EVENT VALUE FOUND " + String(event.flag.description) + " for path " + event.path)
             }
         }
         lastProcessedId = Int(event.ID)
@@ -201,6 +205,7 @@ class ViewController: NSViewController {
         }
     }
     
+    //Tested
     func getJrcPath(path:String) -> String {
         return path.componentsSeparatedByString("/jcr_root")[1]
     }
@@ -240,6 +245,7 @@ class ViewController: NSViewController {
         }
     }
     
+    //Tested
     func pathContainsJrcRoot(path: String) -> Bool {
         if path.containsString("/jcr_root/"){
             return true
@@ -262,6 +268,7 @@ class ViewController: NSViewController {
         return true
     }
     
+    //Tested
     func hasCorrectExtension(path: String) -> Bool {
         for ext in extensions{
             if path.hasSuffix("." + ext){
