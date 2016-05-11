@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8DD6D1C81CE38163007380F6 /* EonilFileSystemEvents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B58357781CE37F3F00D3118F /* EonilFileSystemEvents.framework */; };
+		8DD6D1C91CE38163007380F6 /* EonilFileSystemEvents.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B58357781CE37F3F00D3118F /* EonilFileSystemEvents.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8DD6D1D31CE3816F007380F6 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B58357671CE37E2E00D3118F /* Alamofire.framework */; };
+		8DD6D1D41CE3816F007380F6 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B58357671CE37E2E00D3118F /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B554D9231CDD261E0077BB59 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B554D9221CDD261E0077BB59 /* AppDelegate.swift */; };
 		B554D9251CDD261E0077BB59 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B554D9241CDD261E0077BB59 /* ViewController.swift */; };
 		B554D9271CDD261E0077BB59 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B554D9261CDD261E0077BB59 /* Assets.xcassets */; };
@@ -16,6 +20,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		8DD6D1CA1CE38163007380F6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B58357701CE37F3F00D3118F /* EonilFileSystemEvents.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 45D970A51A1569090037649F;
+			remoteInfo = EonilFileSystemEvents;
+		};
+		8DD6D1D51CE3816F007380F6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B58357581CE37E2E00D3118F /* Alamofire.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 4DD67C0A1A5C55C900ED2280;
+			remoteInfo = "Alamofire OSX";
+		};
 		B554D9311CDD261E0077BB59 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B554D9171CDD261E0077BB59 /* Project object */;
@@ -116,6 +134,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				8DD6D1C91CE38163007380F6 /* EonilFileSystemEvents.framework in Embed Frameworks */,
+				8DD6D1D41CE3816F007380F6 /* Alamofire.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -144,6 +164,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8DD6D1C81CE38163007380F6 /* EonilFileSystemEvents.framework in Frameworks */,
+				8DD6D1D31CE3816F007380F6 /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,6 +278,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				8DD6D1CB1CE38163007380F6 /* PBXTargetDependency */,
+				8DD6D1D61CE3816F007380F6 /* PBXTargetDependency */,
 			);
 			name = InSink;
 			productName = InSink;
@@ -486,6 +510,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		8DD6D1CB1CE38163007380F6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = EonilFileSystemEvents;
+			targetProxy = 8DD6D1CA1CE38163007380F6 /* PBXContainerItemProxy */;
+		};
+		8DD6D1D61CE3816F007380F6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Alamofire OSX";
+			targetProxy = 8DD6D1D51CE3816F007380F6 /* PBXContainerItemProxy */;
+		};
 		B554D9321CDD261E0077BB59 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = B554D91E1CDD261E0077BB59 /* InSink */;
