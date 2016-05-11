@@ -73,17 +73,17 @@ class ViewController: NSViewController {
         super.viewDidLoad()
         if(userDefaults.stringForKey("extensions") != nil){
             self.extensions  = parseInput(userDefaults.stringForKey("extensions")!)
+            extensionsTextField.stringValue = userDefaults.stringForKey("extensions")!
         }
         if(userDefaults.stringForKey("directories") != nil){
             self.directories  = parseInput(userDefaults.stringForKey("directories")!)
+            directoriesTextField.stringValue = userDefaults.stringForKey("directories")!
         }
         if(userDefaults.stringForKey("ignoredPaths") != nil){
             self.ignoredPaths = parseInput(userDefaults.stringForKey("ignoredPaths")!)
+            ignoredPathsTextField.stringValue = userDefaults.stringForKey("ignoredPaths")!
         }
-        
-        extensionsTextField.stringValue = userDefaults.stringForKey("extensions")!
-        directoriesTextField.stringValue = userDefaults.stringForKey("directories")!
-        ignoredPathsTextField.stringValue = userDefaults.stringForKey("ignoredPaths")!
+
     }
     
     override var representedObject: AnyObject? {
