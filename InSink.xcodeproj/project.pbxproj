@@ -13,10 +13,6 @@
 		B554D92A1CDD261E0077BB59 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B554D9281CDD261E0077BB59 /* Main.storyboard */; };
 		B554D9351CDD261E0077BB59 /* InSinkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B554D9341CDD261E0077BB59 /* InSinkTests.swift */; };
 		B554D9401CDD261E0077BB59 /* InSinkUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B554D93F1CDD261E0077BB59 /* InSinkUITests.swift */; };
-		B583577F1CE3819300D3118F /* EonilFileSystemEvents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B58357781CE37F3F00D3118F /* EonilFileSystemEvents.framework */; };
-		B58357801CE3819300D3118F /* EonilFileSystemEvents.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B58357781CE37F3F00D3118F /* EonilFileSystemEvents.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B58357831CE3819D00D3118F /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B58357671CE37E2E00D3118F /* Alamofire.framework */; };
-		B58357841CE3819D00D3118F /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B58357671CE37E2E00D3118F /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,20 +107,6 @@
 			remoteGlobalIDString = 45BF99C51A131E3A004E4E2E;
 			remoteInfo = TestdriveApp;
 		};
-		B58357811CE3819300D3118F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B58357701CE37F3F00D3118F /* EonilFileSystemEvents.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 45D970A51A1569090037649F;
-			remoteInfo = EonilFileSystemEvents;
-		};
-		B58357851CE3819D00D3118F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B58357581CE37E2E00D3118F /* Alamofire.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 4DD67C0A1A5C55C900ED2280;
-			remoteInfo = "Alamofire OSX";
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -134,8 +116,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				B58357801CE3819300D3118F /* EonilFileSystemEvents.framework in Embed Frameworks */,
-				B58357841CE3819D00D3118F /* Alamofire.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -164,8 +144,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B583577F1CE3819300D3118F /* EonilFileSystemEvents.framework in Frameworks */,
-				B58357831CE3819D00D3118F /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,8 +256,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				B58357821CE3819300D3118F /* PBXTargetDependency */,
-				B58357861CE3819D00D3118F /* PBXTargetDependency */,
 			);
 			name = InSink;
 			productName = InSink;
@@ -519,16 +495,6 @@
 			isa = PBXTargetDependency;
 			target = B554D91E1CDD261E0077BB59 /* InSink */;
 			targetProxy = B554D93C1CDD261E0077BB59 /* PBXContainerItemProxy */;
-		};
-		B58357821CE3819300D3118F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = EonilFileSystemEvents;
-			targetProxy = B58357811CE3819300D3118F /* PBXContainerItemProxy */;
-		};
-		B58357861CE3819D00D3118F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Alamofire OSX";
-			targetProxy = B58357851CE3819D00D3118F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
