@@ -26,7 +26,7 @@ class ViewController: NSViewController {
     var extensions: [String] =  []
     var ignoredPaths: [String] = []
     var debug = false;
-    var lastProcessedId = 0
+    var lastProcessedId : Int64 = 0
     var secondPartMoveEventId = ""
     var aemUser = "admin"
     var aemPassword = "admin"
@@ -57,13 +57,13 @@ class ViewController: NSViewController {
     }
     
     @IBAction func saveOptions(sender: AnyObject) {
-        extensions = parseInput(extensionsTextField.stringValue)
+        extensions = parseExtensionsInput(extensionsTextField.stringValue)
         userDefaults.setObject(extensionsTextField.stringValue, forKey:"extensions")
         
-        directories = parseInput(directoriesTextField.stringValue)
+        directories = parseDirectoriesInput(directoriesTextField.stringValue)
         userDefaults.setObject(directoriesTextField.stringValue, forKey:"directories")
 
-        ignoredPaths = parseInput(ignoredPathsTextField.stringValue)
+        ignoredPaths = parseDirectoriesInput(ignoredPathsTextField.stringValue)
         userDefaults.setObject(ignoredPathsTextField.stringValue, forKey:"ignoredPaths")
         
         userDefaults.synchronize()
@@ -72,15 +72,15 @@ class ViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         if(userDefaults.stringForKey("extensions") != nil){
-            self.extensions  = parseInput(userDefaults.stringForKey("extensions")!)
+            self.extensions  = parseExtensionsInput(userDefaults.stringForKey("extensions")!)
             extensionsTextField.stringValue = userDefaults.stringForKey("extensions")!
         }
         if(userDefaults.stringForKey("directories") != nil){
-            self.directories  = parseInput(userDefaults.stringForKey("directories")!)
+            self.directories  = parseDirectoriesInput(userDefaults.stringForKey("directories")!)
             directoriesTextField.stringValue = userDefaults.stringForKey("directories")!
         }
         if(userDefaults.stringForKey("ignoredPaths") != nil){
-            self.ignoredPaths = parseInput(userDefaults.stringForKey("ignoredPaths")!)
+            self.ignoredPaths = parseDirectoriesInput(userDefaults.stringForKey("ignoredPaths")!)
             ignoredPathsTextField.stringValue = userDefaults.stringForKey("ignoredPaths")!
         }
 
@@ -93,8 +93,13 @@ class ViewController: NSViewController {
     }
     
     //Tested
-    func parseInput(input : String) -> [String]{
+    func parseExtensionsInput(input : String) -> [String]{
         return input.stringByReplacingOccurrencesOfString(" ", withString: "").stringByReplacingOccurrencesOfString(".", withString: "").componentsSeparatedByString(",")
+    }
+    
+    //Tested
+    func parseDirectoriesInput(input : String) -> [String]{
+        return input.stringByReplacingOccurrencesOfString(" ", withString: "").componentsSeparatedByString(",")
     }
     
     func configIsValidToRun() -> Bool {
@@ -114,14 +119,14 @@ class ViewController: NSViewController {
             if debug{
                 writeToLog("--> Captured event " + event.description);
             }
-            if eventIsNotHandledBefore(Int(event.ID)){
+            if eventIsNotHandledBefore(Int64(event.ID)){
                 handleEvent(event)
             }
         }
     }
     
     //Tested
-    func eventIsNotHandledBefore(id: Int) -> Bool{
+    func eventIsNotHandledBefore(id: Int64) -> Bool{
         if(id > lastProcessedId){
             return true
         }
@@ -168,7 +173,7 @@ class ViewController: NSViewController {
                 writeToLog("--> NEW EVENT VALUE FOUND " + String(event.flag.description) + " for path " + event.path)
             }
         }
-        lastProcessedId = Int(event.ID)
+        lastProcessedId = Int64(event.ID)
     }
     
     func handleCreatedEvent(event : FileSystemEvent){

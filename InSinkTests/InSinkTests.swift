@@ -72,20 +72,41 @@ class InSinkTests: XCTestCase {
         XCTAssertFalse(viewController.eventIsNotHandledBefore(10))
     }
     
-    func testParseInputSingle() {
-        XCTAssertEqual(viewController.parseInput("html"), ["html"])
+    func testEventIsNotHandledBigIntCheck() {
+        viewController.lastProcessedId = Int64(-299274966120523868)
+        XCTAssertTrue(viewController.eventIsNotHandledBefore(Int64(-299274966120523867)))
     }
     
-    func testParseInputMulti() {
-        XCTAssertEqual(viewController.parseInput("html,css"), ["html","css"])
+    func testParseExtensionsInputSingle() {
+        XCTAssertEqual(viewController.parseExtensionsInput("html"), ["html"])
     }
     
-    func testParseInputMultiWithSpaces() {
-        XCTAssertEqual(viewController.parseInput("html , css "), ["html","css"])
+    func testParseExtensionsInputMulti() {
+        XCTAssertEqual(viewController.parseExtensionsInput("html,css"), ["html","css"])
     }
     
-    func testParseInputMultiWithSpacesAndDot() {
-        XCTAssertEqual(viewController.parseInput("html, .css "), ["html","css"])
+    func testParseExtensionsInputMultiWithSpaces() {
+        XCTAssertEqual(viewController.parseExtensionsInput("html , css "), ["html","css"])
+    }
+    
+    func testParseExtensionsInputMultiWithSpacesAndDot() {
+        XCTAssertEqual(viewController.parseExtensionsInput("html, .css "), ["html","css"])
+    }
+    
+    func testParseDirectoriesInputSingle() {
+        XCTAssertEqual(viewController.parseExtensionsInput("/test/"), ["/test/"])
+    }
+    
+    func testParseDirectoriesInputMulti() {
+        XCTAssertEqual(viewController.parseDirectoriesInput("/test/,/target/"), ["/test/","/target/"])
+    }
+    
+    func testParseDirectoriesInputMultiWithSpaces() {
+        XCTAssertEqual(viewController.parseDirectoriesInput("/test/ , /target/ "), ["/test/","/target/"])
+    }
+    
+    func testParseDirectoriesInputMultiWithSpacesAndDot() {
+        XCTAssertEqual(viewController.parseDirectoriesInput("/.idea/, /target/"), ["/.idea/","/target/"])
     }
     
     func testPerformanceExample() {
@@ -94,5 +115,8 @@ class InSinkTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
+    
+    
+    
     
 }
