@@ -56,6 +56,10 @@ class ViewController: NSViewController {
         writeToLog("Stopped Sync")
     }
     
+    @IBAction func clear(sender: AnyObject) {
+        clearLog()
+    }
+    
     @IBAction func saveOptions(sender: AnyObject) {
         extensions = parseExtensionsInput(extensionsTextField.stringValue)
         userDefaults.setObject(extensionsTextField.stringValue, forKey:"extensions")
@@ -139,6 +143,7 @@ class ViewController: NSViewController {
         case FlagItemCreatedRemoved = "ItemCreated, ItemRemoved"
         case FlagItemRenamedChangeOwner = "ItemRenamed, ItemChangeOwner"
         case FlagItemMetaModifiedChangeOwner = "ItemInodeMetaMod, ItemModified, ItemChangeOwner"
+        case FlagItemMetaModified = "ItemInodeMetaMod, ItemModified"
         case FlagItemCreatedRemovedModified = "ItemCreated, ItemRemoved, ItemModified"
         case FlagItemInodeMetaMod = "ItemInodeMetaMod"
         case FlagItemRenamed = "ItemRenamed"
@@ -160,6 +165,8 @@ class ViewController: NSViewController {
             case EventFlag.FlagItemRenamedChangeOwner.rawValue:
                 handleModifiedEvent(event)
             case EventFlag.FlagItemMetaModifiedChangeOwner.rawValue:
+                handleModifiedEvent(event)
+            case EventFlag.FlagItemMetaModified.rawValue:
                 handleModifiedEvent(event)
             case EventFlag.FlagItemCreatedRemovedModified.rawValue:
                 handleModifiedEvent(event)
@@ -311,6 +318,10 @@ class ViewController: NSViewController {
     func writeToLog(statement: String){
         logView.textStorage!.mutableString.appendString(statement + "\n")
         logView.scrollRangeToVisible(NSMakeRange(logView.textStorage!.length,0))
+    }
+    
+    func clearLog(){
+        logView.textStorage!.mutableString.setString("")
     }
     
     
