@@ -103,7 +103,11 @@ class ViewController: NSViewController {
     
     //Tested
     func parseDirectoriesInput(input : String) -> [String]{
-        return input.stringByReplacingOccurrencesOfString(" ", withString: "").componentsSeparatedByString(",")
+        var dirs = input.componentsSeparatedByString(",")
+        for i in 0..<dirs.count {
+            dirs[i] = dirs[i].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+        }
+        return dirs
     }
     
     func configIsValidToRun() -> Bool {

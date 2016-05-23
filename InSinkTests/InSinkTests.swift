@@ -105,6 +105,10 @@ class InSinkTests: XCTestCase {
         XCTAssertEqual(viewController.parseDirectoriesInput("/test/ , /target/ "), ["/test/","/target/"])
     }
     
+    func testParseDirectoriesContainingSpaceInputMultiWithSpaces() {
+        XCTAssertEqual(viewController.parseDirectoriesInput("/test folder/ , /tar get/ "), ["/test folder/","/tar get/"])
+    }
+    
     func testParseDirectoriesInputMultiWithSpacesAndDot() {
         XCTAssertEqual(viewController.parseDirectoriesInput("/.idea/, /target/"), ["/.idea/","/target/"])
     }
