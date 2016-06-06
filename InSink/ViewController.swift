@@ -151,11 +151,10 @@ class ViewController: NSViewController {
         case FlagItemCreatedRenamedChangeOwner = "ItemCreated, ItemRenamed, ItemChangeOwner"
         case FlagItemMetaModifiedChangeOwner = "ItemInodeMetaMod, ItemModified, ItemChangeOwner"
         case FlagItemCreatedRemovedMetaModifiedOwner = "ItemCreated, ItemRemoved, ItemInodeMetaMod, ItemModified, ItemChangeOwner"
-        
         case FlagItemCreatedMetaRenamedModifiedChangeOwner = "ItemCreated, ItemInodeMetaMod, ItemRenamed, ItemModified, ItemChangeOwner"
         case FlagItemCreatedMetaModifiedChangeOwner = "ItemCreated, ItemInodeMetaMod, ItemModified, ItemChangeOwner"
         case FlagItemCreatedRemovedMetaModified = "ItemCreated, ItemRemoved, ItemInodeMetaMod, ItemModified"
-        
+        case FlagItemMetaChangeOwner = "ItemInodeMetaMod, ItemChangeOwner"
         case FlagItemRemovedRenamedChangeOwner = "ItemRemoved, ItemRenamed, ItemChangeOwner"
         case FlagItemMetaModified = "ItemInodeMetaMod, ItemModified"
         case FlagItemCreatedRemovedModified = "ItemCreated, ItemRemoved, ItemModified"
@@ -191,6 +190,8 @@ class ViewController: NSViewController {
             case EventFlag.FlagItemCreatedMetaRenamedModifiedChangeOwner.rawValue:
                 handleModifiedEvent(event)
             case EventFlag.FlagItemCreatedMetaModifiedChangeOwner.rawValue:
+                handleModifiedEvent(event)
+            case EventFlag.FlagItemMetaChangeOwner.rawValue:
                 handleModifiedEvent(event)
             case EventFlag.FlagItemMetaModifiedChangeOwner.rawValue:
                 handleModifiedEvent(event)
