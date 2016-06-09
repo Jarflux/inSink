@@ -7,7 +7,7 @@
     <h1 align="center">InSink</h1>
 </p>
 ## Description
-InSink is a Mac OSX utility application that listens to changes on local files, to push the changes to a local running Adobe AEM instance. InSink will use jcr_root folder as root 
+InSink is a Mac OSX utility application that listens to changes on local files, to push the changes to a local running Adobe AEM instance. InSink will use the jcr_root folders in the directories to determine the start of the relative path of a file in the AEM instance.
 
 ## Options
 #### Extensions
