@@ -7,25 +7,30 @@
     <h1 align="center">InSink</h1>
 </p>
 ## Description
-InSink is a Mac OSX utility application that listens to changes on local files, to push the changes to a local running Adobe AEM instance. InSink will use the jcr_root folders in the directories to determine the start of the relative path of a file in the AEM instance.
+InSink is a Mac OSX utility application that listens to changes on local files, to push the changes to a local running Adobe AEM instance. Jcr_root folders in the directoreis are mapped to the root node of the AEM instance.
 
 ## Options
 #### Extensions
 Comma separeted list of file extensions that need to be pushed to AEM.<br />
 ````
-html, css, js, json, xml, woff, tff, eot, svg, woff2
+f.e. html, css, js, json, xml, woff, tff, eot, svg, woff2
 ````
 
 #### Directories
 Comma separated list of directories that contain files.<br />
 ````
-/Users/tony/stark/cor/html, /Users/scarlett/johannson/theme/css
+f.e. /Users/Documents/site/html, /Users/theme/css
 ````
 
 #### Excluded Paths
 Comma separated list of excluded path.<br />
 ````
-/.idea/, /target/, pom.xml, /site-package/, /aem-static-components/
+f.e. /.idea/, /target/, pom.xml
 ````
 
+## Example
+
+<img src="http://i.imgur.com/C4qa4kG.png" alt="Screenshot local folder with theme.css and content">
+<img src="http://i.imgur.com/bIBEUOE.png" alt="Screenshot InSink showing file is beeing pushed">
+<img src="http://i.imgur.com/56Gy7Cf.png" alt="Screenshot AEM crx showing node containing theme.css content">
 
