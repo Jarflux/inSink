@@ -3,9 +3,9 @@
     <h1 align="center">InSink</h1>
 </p>
 
-![](https://img.shields.io/github/release/qubyte/rubidium.svg?maxAge=100000)
+<a href="https://github.com/Jarflux/inSink/releases/latest"><img src="https://img.shields.io/github/release/qubyte/rubidium.svg?maxAge=100000"alt="Release"/></a>
 ![](https://img.shields.io/badge/build-stable-brightgreen.svg?maxAge=100000)
-![](https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=10000)
+<a href="http://choosealicense.com/licenses/mit/"><img src="https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=10000" alt="MIT License"/></a>
 <br />
 <br />
 <a align="center" href="https://github.com/Jarflux/inSink/releases/download/v1.0/InSink.app.zip">Download InSink v1.0</a>
@@ -17,19 +17,19 @@ InSink is a Mac OSX utility application that listens to changes on local files, 
 #### Extensions
 Comma separeted list of file extensions that need to be pushed to AEM.<br />
 ````
-f.e. html, css, js, json, xml, woff, tff, eot, svg, woff2
+html, css, js, json, xml, woff, tff, eot, svg, woff2
 ````
 
 #### Directories
 Comma separated list of directories that contain files.<br />
 ````
-f.e. /Users/Documents/site/html, /Users/theme/css
+/Users/Documents/site/html, /Users/theme/css
 ````
 
 #### Excluded Paths
 Comma separated list of excluded path.<br />
 ````
-f.e. /.idea/, /target/, pom.xml
+/.idea/, /target/, pom.xml
 ````
 
 ## Example
