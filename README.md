@@ -11,7 +11,7 @@
 <a align="center" href="https://github.com/Jarflux/inSink/releases/download/v1.0/InSink.app.zip">Download InSink v1.0</a>
 
 ## Description
-InSink is a Mac OSX utility application that listens to changes on local files, to push the changes to a local running Adobe AEM instance. Jcr_root folders in the directoreis are mapped to the root node of the AEM instance.
+InSink is a Mac OSX utility application that listens to changes on local files, to push the changes to a local running Adobe AEM instance. Jcr_root folders in the directories are mapped to the root node of the AEM instance.
 
 ## Options
 #### Extensions
