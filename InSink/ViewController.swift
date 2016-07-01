@@ -144,24 +144,17 @@ class ViewController: NSViewController {
     enum EventFlag: String{
         case FlagItemCreated = "ItemCreated"
         case FlagItemRemoved = "ItemRemoved"
-        case FlagItemCreatedRemoved = "ItemCreated, ItemRemoved"
-        case FlagItemCreatedModified = "ItemCreated, ItemModified"
-        case FlagItemRenamedChangeOwner = "ItemRenamed, ItemChangeOwner"
-        case FlagItemCreatedMetaModified = "ItemCreated, ItemInodeMetaMod, ItemModified"
-        case FlagItemCreatedRenamedChangeOwner = "ItemCreated, ItemRenamed, ItemChangeOwner"
-        case FlagItemMetaModifiedChangeOwner = "ItemInodeMetaMod, ItemModified, ItemChangeOwner"
-        case FlagItemCreatedRemovedMetaModifiedOwner = "ItemCreated, ItemRemoved, ItemInodeMetaMod, ItemModified, ItemChangeOwner"
-        case FlagItemCreatedMetaRenamedModifiedChangeOwner = "ItemCreated, ItemInodeMetaMod, ItemRenamed, ItemModified, ItemChangeOwner"
-        case FlagItemCreatedMetaModifiedChangeOwner = "ItemCreated, ItemInodeMetaMod, ItemModified, ItemChangeOwner"
-        case FlagItemCreatedRemovedMetaModified = "ItemCreated, ItemRemoved, ItemInodeMetaMod, ItemModified"
-        case FlagItemMetaChangeOwner = "ItemInodeMetaMod, ItemChangeOwner"
-        case FlagItemCreatedModifiedChangeOwner = "ItemCreated, ItemModified, ItemChangeOwner"
-        case FlagItemRemovedRenamedChangeOwner = "ItemRemoved, ItemRenamed, ItemChangeOwner"
-        case FlagItemMetaModified = "ItemInodeMetaMod, ItemModified"
-        case FlagItemCreatedRemovedModified = "ItemCreated, ItemRemoved, ItemModified"
         case FlagItemInodeMetaMod = "ItemInodeMetaMod"
         case FlagItemRenamed = "ItemRenamed"
         case FlagItemModified = "ItemModified"
+        case FlagItemXattrMod = "ItemXattrMod"
+        case FlagItemChangeOwner = "ItemChangeOwner"
+        case FlagItemFinderInfoMod = "ItemFinderInfoMod"
+    }
+    
+    func parseLastEventFromRawValue(input : String) -> String{
+        var eventsArray = input.stringByReplacingOccurrencesOfString(" ", withString: "").componentsSeparatedByString(",")
+        return eventsArray[eventsArray.count-1]
     }
     
     func handleEvent(event: FileSystemEvent) {
@@ -169,50 +162,28 @@ class ViewController: NSViewController {
             if debug{
                 writeToLog("--> Handling event " + event.description)
             }
-            switch event.flag.description {
+        
+            switch parseLastEventFromRawValue(event.flag.description) {
             case EventFlag.FlagItemCreated.rawValue:
                 handleCreatedEvent(event)
             case EventFlag.FlagItemRemoved.rawValue:
                 handleRemovedEvent(event)
-            case EventFlag.FlagItemCreatedRemoved.rawValue:
-                handleRemovedEvent(event)
-            case EventFlag.FlagItemCreatedModified.rawValue:
-                handleModifiedEvent(event)
-            case EventFlag.FlagItemCreatedMetaModified.rawValue:
-                handleModifiedEvent(event)
-            case EventFlag.FlagItemRenamedChangeOwner.rawValue:
-                handleModifiedEvent(event)
-            case EventFlag.FlagItemCreatedModifiedChangeOwner.rawValue:
-                handleModifiedEvent(event)
-            case EventFlag.FlagItemCreatedRenamedChangeOwner.rawValue:
-                handleModifiedEvent(event)
-            case EventFlag.FlagItemCreatedRemovedMetaModifiedOwner.rawValue:
-                handleModifiedEvent(event)
-            case EventFlag.FlagItemRemovedRenamedChangeOwner.rawValue:
-                handleModifiedEvent(event)
-            case EventFlag.FlagItemCreatedMetaRenamedModifiedChangeOwner.rawValue:
-                handleModifiedEvent(event)
-            case EventFlag.FlagItemCreatedMetaModifiedChangeOwner.rawValue:
-                handleModifiedEvent(event)
-            case EventFlag.FlagItemMetaChangeOwner.rawValue:
-                handleModifiedEvent(event)
-            case EventFlag.FlagItemMetaModifiedChangeOwner.rawValue:
-                handleModifiedEvent(event)
-            case EventFlag.FlagItemCreatedRemovedMetaModified.rawValue:
-                handleRemovedEvent(event)
-            case EventFlag.FlagItemMetaModified.rawValue:
-                handleModifiedEvent(event)
-            case EventFlag.FlagItemCreatedRemovedModified.rawValue:
-                handleModifiedEvent(event)
             case EventFlag.FlagItemInodeMetaMod.rawValue:
                 handleModifiedEvent(event)
             case EventFlag.FlagItemRenamed.rawValue:
                 handleRenamedEvent(event)
             case EventFlag.FlagItemModified.rawValue:
                 handleModifiedEvent(event)
+            case EventFlag.FlagItemXattrMod.rawValue:
+                handleModifiedEvent(event)
+            case EventFlag.FlagItemChangeOwner.rawValue:
+                handleModifiedEvent(event)
+            case EventFlag.FlagItemFinderInfoMod.rawValue:
+                handleModifiedEvent(event)
             default:
                 writeToLog("--> NEW EVENT VALUE FOUND " + String(event.flag.description) + " for path " + event.path)
             }
+            
         }
         lastProcessedId = Int64(event.ID)
     }

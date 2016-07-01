@@ -113,6 +113,14 @@ class InSinkTests: XCTestCase {
         XCTAssertEqual(viewController.parseDirectoriesInput("/.idea/, /target/"), ["/.idea/","/target/"])
     }
     
+    func testExtractLastEventFromSingleRawValue(){
+        XCTAssertEqual(viewController.parseLastEventFromRawValue("ItemCreated"), "ItemCreated")
+    }
+    
+    func testExtractLastEventFromMultiRawValue(){
+        XCTAssertEqual(viewController.parseLastEventFromRawValue("ItemCreated, ItemRemoved"), "ItemRemoved")
+    }
+    
     func testPerformanceExample() {
         // This is an example of a performance test case.
         self.measureBlock {
