@@ -8,7 +8,7 @@
 <a href="http://choosealicense.com/licenses/mit/"><img src="https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=10000" alt="MIT License"/></a>
 <br />
 <br />
-<a align="center" href="https://github.com/Jarflux/inSink/releases/download/v1.0/InSink.app.zip">Download InSink v1.0</a>
+<a align="center" href="https://github.com/Jarflux/inSink/releases/download/v1.1/InSink.app.zip">Download InSink v1.1</a>
 
 ## Description
 InSink is a Mac OSX utility application that listens to changes on local files, to push the changes to a local running Adobe AEM instance. Jcr_root folders in the directories are mapped to the root node of the AEM instance.
