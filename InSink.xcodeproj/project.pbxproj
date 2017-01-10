@@ -7,19 +7,52 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8D70032D1E25230400368391 /* EonilFileSystemEvents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D7003261E24F9F900368391 /* EonilFileSystemEvents.framework */; };
+		8D70032F1E25230B00368391 /* EonilFileSystemEvents.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D7003261E24F9F900368391 /* EonilFileSystemEvents.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B554D9231CDD261E0077BB59 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B554D9221CDD261E0077BB59 /* AppDelegate.swift */; };
 		B554D9251CDD261E0077BB59 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B554D9241CDD261E0077BB59 /* ViewController.swift */; };
 		B554D9271CDD261E0077BB59 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B554D9261CDD261E0077BB59 /* Assets.xcassets */; };
 		B554D92A1CDD261E0077BB59 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B554D9281CDD261E0077BB59 /* Main.storyboard */; };
-		B554D9351CDD261E0077BB59 /* InSinkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B554D9341CDD261E0077BB59 /* InSinkTests.swift */; };
-		B554D9401CDD261E0077BB59 /* InSinkUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B554D93F1CDD261E0077BB59 /* InSinkUITests.swift */; };
-		B58357951CE385DC00D3118F /* EonilFileSystemEvents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B58357781CE37F3F00D3118F /* EonilFileSystemEvents.framework */; };
-		B58357961CE385DC00D3118F /* EonilFileSystemEvents.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B58357781CE37F3F00D3118F /* EonilFileSystemEvents.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B58357A01CE385E200D3118F /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B58357671CE37E2E00D3118F /* Alamofire.framework */; };
 		B58357A11CE385E200D3118F /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B58357671CE37E2E00D3118F /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		8D7003251E24F9F900368391 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8D70031E1E24F9F900368391 /* EonilFileSystemEvents.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 45D970A61A1569090037649F;
+			remoteInfo = EonilFileSystemEvents;
+		};
+		8D7003271E24F9F900368391 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8D70031E1E24F9F900368391 /* EonilFileSystemEvents.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 45D970961A155DD50037649F;
+			remoteInfo = InternalTester;
+		};
+		8D7003291E24F9F900368391 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8D70031E1E24F9F900368391 /* EonilFileSystemEvents.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 45DA95801A69F1610091410B;
+			remoteInfo = InternalTester4;
+		};
+		8D70032B1E24F9F900368391 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8D70031E1E24F9F900368391 /* EonilFileSystemEvents.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 45BF99C51A131E3A004E4E2E;
+			remoteInfo = TestdriveApp;
+		};
+		8D7003301E25230B00368391 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8D70031E1E24F9F900368391 /* EonilFileSystemEvents.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 45D970A51A1569090037649F;
+			remoteInfo = EonilFileSystemEvents;
+		};
 		B554D9311CDD261E0077BB59 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B554D9171CDD261E0077BB59 /* Project object */;
@@ -83,41 +116,6 @@
 			remoteGlobalIDString = E4202FE01B667AA100C997FB;
 			remoteInfo = "Alamofire watchOS";
 		};
-		B58357771CE37F3F00D3118F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B58357701CE37F3F00D3118F /* EonilFileSystemEvents.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 45D970A61A1569090037649F;
-			remoteInfo = EonilFileSystemEvents;
-		};
-		B58357791CE37F3F00D3118F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B58357701CE37F3F00D3118F /* EonilFileSystemEvents.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 45D970961A155DD50037649F;
-			remoteInfo = InternalTester;
-		};
-		B583577B1CE37F3F00D3118F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B58357701CE37F3F00D3118F /* EonilFileSystemEvents.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 45DA95801A69F1610091410B;
-			remoteInfo = InternalTester4;
-		};
-		B583577D1CE37F3F00D3118F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B58357701CE37F3F00D3118F /* EonilFileSystemEvents.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 45BF99C51A131E3A004E4E2E;
-			remoteInfo = TestdriveApp;
-		};
-		B58357971CE385DC00D3118F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B58357701CE37F3F00D3118F /* EonilFileSystemEvents.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 45D970A51A1569090037649F;
-			remoteInfo = EonilFileSystemEvents;
-		};
 		B58357A21CE385E200D3118F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B58357581CE37E2E00D3118F /* Alamofire.xcodeproj */;
@@ -134,7 +132,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				B58357961CE385DC00D3118F /* EonilFileSystemEvents.framework in Embed Frameworks */,
+				8D70032F1E25230B00368391 /* EonilFileSystemEvents.framework in Embed Frameworks */,
 				B58357A11CE385E200D3118F /* Alamofire.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -143,6 +141,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8D70031E1E24F9F900368391 /* EonilFileSystemEvents.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = EonilFileSystemEvents.xcodeproj; path = "FileSystemEvents-master/Project/EonilFileSystemEvents.xcodeproj"; sourceTree = "<group>"; };
 		B554D91F1CDD261E0077BB59 /* InSink.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InSink.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B554D9221CDD261E0077BB59 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B554D9241CDD261E0077BB59 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -150,13 +149,8 @@
 		B554D9291CDD261E0077BB59 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B554D92B1CDD261E0077BB59 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B554D9301CDD261E0077BB59 /* InSinkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InSinkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B554D9341CDD261E0077BB59 /* InSinkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InSinkTests.swift; sourceTree = "<group>"; };
-		B554D9361CDD261E0077BB59 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B554D93B1CDD261E0077BB59 /* InSinkUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InSinkUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B554D93F1CDD261E0077BB59 /* InSinkUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InSinkUITests.swift; sourceTree = "<group>"; };
-		B554D9411CDD261E0077BB59 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B58357581CE37E2E00D3118F /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = Alamofire/Alamofire.xcodeproj; sourceTree = "<group>"; };
-		B58357701CE37F3F00D3118F /* EonilFileSystemEvents.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = EonilFileSystemEvents.xcodeproj; path = "FileSystemEvents-master/EonilFileSystemEvents.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,7 +158,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B58357951CE385DC00D3118F /* EonilFileSystemEvents.framework in Frameworks */,
+				8D70032D1E25230400368391 /* EonilFileSystemEvents.framework in Frameworks */,
 				B58357A01CE385E200D3118F /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -186,14 +180,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8D70031F1E24F9F900368391 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8D7003261E24F9F900368391 /* EonilFileSystemEvents.framework */,
+				8D7003281E24F9F900368391 /* InternalTester */,
+				8D70032A1E24F9F900368391 /* InternalTester4.app */,
+				8D70032C1E24F9F900368391 /* TestdriveApp.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		B554D9161CDD261E0077BB59 = {
 			isa = PBXGroup;
 			children = (
-				B58357701CE37F3F00D3118F /* EonilFileSystemEvents.xcodeproj */,
+				8D70031E1E24F9F900368391 /* EonilFileSystemEvents.xcodeproj */,
 				B58357581CE37E2E00D3118F /* Alamofire.xcodeproj */,
 				B554D9211CDD261E0077BB59 /* InSink */,
-				B554D9331CDD261E0077BB59 /* InSinkTests */,
-				B554D93E1CDD261E0077BB59 /* InSinkUITests */,
 				B554D9201CDD261E0077BB59 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -220,45 +223,16 @@
 			path = InSink;
 			sourceTree = "<group>";
 		};
-		B554D9331CDD261E0077BB59 /* InSinkTests */ = {
-			isa = PBXGroup;
-			children = (
-				B554D9341CDD261E0077BB59 /* InSinkTests.swift */,
-				B554D9361CDD261E0077BB59 /* Info.plist */,
-			);
-			path = InSinkTests;
-			sourceTree = "<group>";
-		};
-		B554D93E1CDD261E0077BB59 /* InSinkUITests */ = {
-			isa = PBXGroup;
-			children = (
-				B554D93F1CDD261E0077BB59 /* InSinkUITests.swift */,
-				B554D9411CDD261E0077BB59 /* Info.plist */,
-			);
-			path = InSinkUITests;
-			sourceTree = "<group>";
-		};
 		B58357591CE37E2E00D3118F /* Products */ = {
 			isa = PBXGroup;
 			children = (
 				B58357631CE37E2E00D3118F /* Alamofire.framework */,
 				B58357651CE37E2E00D3118F /* Alamofire iOS Tests.xctest */,
 				B58357671CE37E2E00D3118F /* Alamofire.framework */,
-				B58357691CE37E2E00D3118F /* Alamofire OSX Tests.xctest */,
+				B58357691CE37E2E00D3118F /* Alamofire macOS Tests.xctest */,
 				B583576B1CE37E2E00D3118F /* Alamofire.framework */,
 				B583576D1CE37E2E00D3118F /* Alamofire tvOS Tests.xctest */,
 				B583576F1CE37E2E00D3118F /* Alamofire.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		B58357711CE37F3F00D3118F /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				B58357781CE37F3F00D3118F /* EonilFileSystemEvents.framework */,
-				B583577A1CE37F3F00D3118F /* InternalTester */,
-				B583577C1CE37F3F00D3118F /* InternalTester4.app */,
-				B583577E1CE37F3F00D3118F /* TestdriveApp.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -278,8 +252,8 @@
 			buildRules = (
 			);
 			dependencies = (
-				B58357981CE385DC00D3118F /* PBXTargetDependency */,
 				B58357A31CE385E200D3118F /* PBXTargetDependency */,
+				8D7003311E25230B00368391 /* PBXTargetDependency */,
 			);
 			name = InSink;
 			productName = InSink;
@@ -329,18 +303,21 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Ben Oeyen";
 				TargetAttributes = {
 					B554D91E1CDD261E0077BB59 = {
 						CreatedOnToolsVersion = 7.3;
+						LastSwiftMigration = 0820;
 					};
 					B554D92F1CDD261E0077BB59 = {
 						CreatedOnToolsVersion = 7.3;
+						LastSwiftMigration = 0820;
 						TestTargetID = B554D91E1CDD261E0077BB59;
 					};
 					B554D93A1CDD261E0077BB59 = {
 						CreatedOnToolsVersion = 7.3;
+						LastSwiftMigration = 0820;
 						TestTargetID = B554D91E1CDD261E0077BB59;
 					};
 				};
@@ -362,8 +339,8 @@
 					ProjectRef = B58357581CE37E2E00D3118F /* Alamofire.xcodeproj */;
 				},
 				{
-					ProductGroup = B58357711CE37F3F00D3118F /* Products */;
-					ProjectRef = B58357701CE37F3F00D3118F /* EonilFileSystemEvents.xcodeproj */;
+					ProductGroup = 8D70031F1E24F9F900368391 /* Products */;
+					ProjectRef = 8D70031E1E24F9F900368391 /* EonilFileSystemEvents.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -376,6 +353,34 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		8D7003261E24F9F900368391 /* EonilFileSystemEvents.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = EonilFileSystemEvents.framework;
+			remoteRef = 8D7003251E24F9F900368391 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		8D7003281E24F9F900368391 /* InternalTester */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = InternalTester;
+			remoteRef = 8D7003271E24F9F900368391 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		8D70032A1E24F9F900368391 /* InternalTester4.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = InternalTester4.app;
+			remoteRef = 8D7003291E24F9F900368391 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		8D70032C1E24F9F900368391 /* TestdriveApp.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = TestdriveApp.app;
+			remoteRef = 8D70032B1E24F9F900368391 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		B58357631CE37E2E00D3118F /* Alamofire.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -397,10 +402,10 @@
 			remoteRef = B58357661CE37E2E00D3118F /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		B58357691CE37E2E00D3118F /* Alamofire OSX Tests.xctest */ = {
+		B58357691CE37E2E00D3118F /* Alamofire macOS Tests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = "Alamofire OSX Tests.xctest";
+			path = "Alamofire macOS Tests.xctest";
 			remoteRef = B58357681CE37E2E00D3118F /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -423,34 +428,6 @@
 			fileType = wrapper.framework;
 			path = Alamofire.framework;
 			remoteRef = B583576E1CE37E2E00D3118F /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		B58357781CE37F3F00D3118F /* EonilFileSystemEvents.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = EonilFileSystemEvents.framework;
-			remoteRef = B58357771CE37F3F00D3118F /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		B583577A1CE37F3F00D3118F /* InternalTester */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.executable";
-			path = InternalTester;
-			remoteRef = B58357791CE37F3F00D3118F /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		B583577C1CE37F3F00D3118F /* InternalTester4.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = InternalTester4.app;
-			remoteRef = B583577B1CE37F3F00D3118F /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		B583577E1CE37F3F00D3118F /* TestdriveApp.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = TestdriveApp.app;
-			remoteRef = B583577D1CE37F3F00D3118F /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -495,7 +472,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B554D9351CDD261E0077BB59 /* InSinkTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -503,13 +479,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B554D9401CDD261E0077BB59 /* InSinkUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		8D7003311E25230B00368391 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = EonilFileSystemEvents;
+			targetProxy = 8D7003301E25230B00368391 /* PBXContainerItemProxy */;
+		};
 		B554D9321CDD261E0077BB59 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = B554D91E1CDD261E0077BB59 /* InSink */;
@@ -519,11 +499,6 @@
 			isa = PBXTargetDependency;
 			target = B554D91E1CDD261E0077BB59 /* InSink */;
 			targetProxy = B554D93C1CDD261E0077BB59 /* PBXContainerItemProxy */;
-		};
-		B58357981CE385DC00D3118F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = EonilFileSystemEvents;
-			targetProxy = B58357971CE385DC00D3118F /* PBXContainerItemProxy */;
 		};
 		B58357A31CE385E200D3118F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -558,8 +533,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
@@ -603,8 +580,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
@@ -623,34 +602,37 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 			};
 			name = Release;
 		};
 		B554D9451CDD261E0077BB59 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = InSink/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = jarflux.InSink;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		B554D9461CDD261E0077BB59 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = InSink/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = jarflux.InSink;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -663,6 +645,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = jarflux.InSinkTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/InSink.app/Contents/MacOS/InSink";
 			};
 			name = Debug;
@@ -676,6 +659,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = jarflux.InSinkTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/InSink.app/Contents/MacOS/InSink";
 			};
 			name = Release;
@@ -688,6 +672,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = jarflux.InSinkUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = InSink;
 			};
 			name = Debug;
@@ -700,6 +685,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = jarflux.InSinkUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = InSink;
 			};
 			name = Release;

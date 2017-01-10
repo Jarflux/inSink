@@ -13,16 +13,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     var mainWindow: NSWindow!
     
-    func applicationDidFinishLaunching(aNotification: NSNotification) {
+    func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
-        mainWindow = NSApplication.sharedApplication().windows[0]
+        mainWindow = NSApplication.shared().windows[0]
     }
 
-    func applicationWillTerminate(aNotification: NSNotification) {
+    func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
     }
     
-    func applicationShouldHandleReopen(sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
+    func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
         if !flag{
             mainWindow.makeKeyAndOrderFront(nil)
         }

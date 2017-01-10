@@ -26,86 +26,86 @@ class ViewController: NSViewController {
     var extensions: [String] =  []
     var ignoredPaths: [String] = []
     var debug = false;
-    var lastProcessedId : Int64 = 0
+    var lastProcessedId : UInt64 = 0
     var secondPartMoveEventId = ""
     var aemUser = "admin"
     var aemPassword = "admin"
     
-    var userDefaults = NSUserDefaults.standardUserDefaults()
+    var userDefaults = UserDefaults.standard
     
-    @IBAction func start(sender: AnyObject) {
+    @IBAction func start(_ sender: AnyObject) {
         writeToLog("Started Sync")
         if configIsValidToRun(){
-            startButton.enabled = false
-            stopButton.enabled = true
+            startButton.isEnabled = false
+            stopButton.isEnabled = true
             
             monitor = FileSystemEventMonitor(
                 pathsToWatch: directories,
                 latency: 1,
                 watchRoot: true,
-                queue: dispatch_get_main_queue()) { (events:[FileSystemEvent])->() in
+                queue: DispatchQueue.main) { (events:[FileSystemEvent])->() in
                     self.handleEvents(events)
             }
         }
     }
     
-    @IBAction func stop(sender: AnyObject) {
+    @IBAction func stop(_ sender: AnyObject) {
         monitor = nil
-        startButton.enabled = true
-        stopButton.enabled = false
+        startButton.isEnabled = true
+        stopButton.isEnabled = false
         writeToLog("Stopped Sync")
     }
     
-    @IBAction func clear(sender: AnyObject) {
+    @IBAction func clear(_ sender: AnyObject) {
         clearLog()
     }
     
-    @IBAction func saveOptions(sender: AnyObject) {
+    @IBAction func saveOptions(_ sender: AnyObject) {
         extensions = parseExtensionsInput(extensionsTextField.stringValue)
-        userDefaults.setObject(extensionsTextField.stringValue, forKey:"extensions")
+        userDefaults.set(extensionsTextField.stringValue, forKey:"extensions")
         
         directories = parseDirectoriesInput(directoriesTextField.stringValue)
-        userDefaults.setObject(directoriesTextField.stringValue, forKey:"directories")
+        userDefaults.set(directoriesTextField.stringValue, forKey:"directories")
 
         ignoredPaths = parseDirectoriesInput(ignoredPathsTextField.stringValue)
-        userDefaults.setObject(ignoredPathsTextField.stringValue, forKey:"ignoredPaths")
+        userDefaults.set(ignoredPathsTextField.stringValue, forKey:"ignoredPaths")
         
         userDefaults.synchronize()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if(userDefaults.stringForKey("extensions") != nil){
-            self.extensions  = parseExtensionsInput(userDefaults.stringForKey("extensions")!)
-            extensionsTextField.stringValue = userDefaults.stringForKey("extensions")!
+        if(userDefaults.string(forKey: "extensions") != nil){
+            self.extensions  = parseExtensionsInput(userDefaults.string(forKey: "extensions")!)
+            extensionsTextField.stringValue = userDefaults.string(forKey: "extensions")!
         }
-        if(userDefaults.stringForKey("directories") != nil){
-            self.directories  = parseDirectoriesInput(userDefaults.stringForKey("directories")!)
-            directoriesTextField.stringValue = userDefaults.stringForKey("directories")!
+        if(userDefaults.string(forKey: "directories") != nil){
+            self.directories  = parseDirectoriesInput(userDefaults.string(forKey: "directories")!)
+            directoriesTextField.stringValue = userDefaults.string(forKey: "directories")!
         }
-        if(userDefaults.stringForKey("ignoredPaths") != nil){
-            self.ignoredPaths = parseDirectoriesInput(userDefaults.stringForKey("ignoredPaths")!)
-            ignoredPathsTextField.stringValue = userDefaults.stringForKey("ignoredPaths")!
+        if(userDefaults.string(forKey: "ignoredPaths") != nil){
+            self.ignoredPaths = parseDirectoriesInput(userDefaults.string(forKey: "ignoredPaths")!)
+            ignoredPathsTextField.stringValue = userDefaults.string(forKey: "ignoredPaths")!
         }
 
     }
     
-    override var representedObject: AnyObject? {
+    override var representedObject: Any? {
         didSet {
             // Update the view, if already loaded.
         }
     }
     
     //Tested
-    func parseExtensionsInput(input : String) -> [String]{
-        return input.stringByReplacingOccurrencesOfString(" ", withString: "").stringByReplacingOccurrencesOfString(".", withString: "").componentsSeparatedByString(",")
+    func parseExtensionsInput(_ input : String) -> [String]{
+        return input.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: ".", with: "").components(separatedBy: ",")
     }
     
     //Tested
-    func parseDirectoriesInput(input : String) -> [String]{
-        var dirs = input.componentsSeparatedByString(",")
+    func parseDirectoriesInput(_ input : String) -> [String]{
+        var dirs = input.components(separatedBy: ",")
         for i in 0..<dirs.count {
-            dirs[i] = dirs[i].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+            dirs[i] = dirs[i].trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         }
         return dirs
     }
@@ -122,19 +122,19 @@ class ViewController: NSViewController {
         return true
     }
     
-    func handleEvents(events: [FileSystemEvent]) {
+    func handleEvents(_ events: [FileSystemEvent]) {
         for event in events{
             if debug{
                 writeToLog("--> Captured event " + event.description);
             }
-            if eventIsNotHandledBefore(Int64(event.ID)){
+            if eventIsNotHandledBefore(UInt64(event.ID)){
                 handleEvent(event)
             }
         }
     }
     
     //Tested
-    func eventIsNotHandledBefore(id: Int64) -> Bool{
+    func eventIsNotHandledBefore(_ id: UInt64) -> Bool{
         if(id > lastProcessedId){
             return true
         }
@@ -152,17 +152,17 @@ class ViewController: NSViewController {
         case FlagItemFinderInfoMod = "ItemFinderInfoMod"
     }
     
-    func parseLastEventFromRawValue(input : String) -> String{
-        var eventsArray = input.stringByReplacingOccurrencesOfString(" ", withString: "").componentsSeparatedByString(",")
+    func parseLastEventFromRawValue(_ input : String) -> String{
+        var eventsArray = input.replacingOccurrences(of: " ", with: "").components(separatedBy: ",")
         return eventsArray[eventsArray.count-1]
     }
     
-    func handleEvent(event: FileSystemEvent) {
+    func handleEvent(_ event: FileSystemEvent) {
         if  pathContainsJrcRoot(event.path) &&  hasCorrectExtension(event.path) && pathIsNotIgnored(event.path){
             if debug{
                 writeToLog("--> Handling event " + event.description)
             }
-        
+                   
             switch parseLastEventFromRawValue(event.flag.description) {
             case EventFlag.FlagItemCreated.rawValue:
                 handleCreatedEvent(event)
@@ -185,31 +185,31 @@ class ViewController: NSViewController {
             }
             
         }
-        lastProcessedId = Int64(event.ID)
+        lastProcessedId = UInt64(event.ID)
     }
     
-    func handleCreatedEvent(event : FileSystemEvent){
+    func handleCreatedEvent(_ event : FileSystemEvent){
         if debug{
             writeToLog("--> Handle Create event" + event.description)
         }
         pushFileToRemote(event.path)
     }
     
-    func handleRemovedEvent(event : FileSystemEvent){
+    func handleRemovedEvent(_ event : FileSystemEvent){
         if debug{
             writeToLog("--> Handle Removed event" + event.description)
         }
         removeFileFromRemote(event.path)
     }
     
-    func handleModifiedEvent(event : FileSystemEvent){
+    func handleModifiedEvent(_ event : FileSystemEvent){
         if debug{
             writeToLog("--> Handle Modified event" + event.description)
         }
         pushFileToRemote(event.path)
     }
     
-    func handleRenamedEvent(event : FileSystemEvent){
+    func handleRenamedEvent(_ event : FileSystemEvent){
         if(secondPartMoveEventId != String(event.ID)){
             if debug{
                 writeToLog("--> Handle Create event part 1" + event.description)
@@ -226,48 +226,48 @@ class ViewController: NSViewController {
     }
     
     //Tested
-    func getJrcPath(path:String) -> String {
-        return path.componentsSeparatedByString("/jcr_root")[1]
+    func getJrcPath(_ path:String) -> String {
+        return path.components(separatedBy: "/jcr_root")[1]
     }
     
-    func pushFileToRemote(path: String) {
+    func pushFileToRemote(_ path: String) {
         let remote = "http://localhost:4502" + getJrcPath(path)
-        let url = NSURL(string:remote)
-        let request = NSMutableURLRequest(URL: url!)
-        request.HTTPMethod = "PUT"
-        request.HTTPBody = NSData(contentsOfFile: path)
-        Alamofire.request(request).authenticate(user: aemUser, password: aemPassword)
+        let url = URL(string:remote)
+        let request = NSMutableURLRequest(url: url!)
+        request.httpMethod = "PUT"
+        request.httpBody = try? Data(contentsOf: URL(fileURLWithPath: path))
+        Alamofire.upload(URL(fileURLWithPath: path), to: url!, method: .put).authenticate(user: aemUser, password: aemPassword)
             .responseData { response in
                 if response.result.isSuccess {
                     self.writeStatusToLog("PUSH", result: true, dest: remote)
                 }
                 if response.result.isFailure {
                     self.writeStatusToLog("PUSH", result: false, dest: remote)
-                    self.writeToLog("Response " + String(response))
+                    self.writeToLog("Response " + String(describing: response))
                 }
         }
     }
     
-    func removeFileFromRemote(path : String){
+    func removeFileFromRemote(_ path : String){
         let remote = "http://localhost:4502" + getJrcPath(path)
-        let url = NSURL(string:remote)
-        let request = NSMutableURLRequest(URL: url!)
-        request.HTTPMethod = "DELETE"
-        Alamofire.request(request).authenticate(user: aemUser, password: aemPassword)
+        let url = URL(string:remote)
+        let request = NSMutableURLRequest(url: url!)
+        request.httpMethod = "DELETE"
+        Alamofire.request(request as! URLRequestConvertible).authenticate(user: aemUser, password: aemPassword)
             .responseData { response in
                 if response.result.isSuccess {
                     self.writeStatusToLog("DELETE", result: true, dest: remote)
                 }
                 if response.result.isFailure {
                     self.writeStatusToLog("DELETE", result: false, dest: remote)
-                    self.writeToLog("Response " + String(response))
+                    self.writeToLog("Response " + String(describing: response))
                 }
         }
     }
     
     //Tested
-    func pathContainsJrcRoot(path: String) -> Bool {
-        if path.containsString("/jcr_root/"){
+    func pathContainsJrcRoot(_ path: String) -> Bool {
+        if path.contains("/jcr_root/"){
             return true
         }
         if debug {
@@ -276,9 +276,9 @@ class ViewController: NSViewController {
         return false
     }
     
-    func pathIsNotIgnored(path: String) -> Bool {
+    func pathIsNotIgnored(_ path: String) -> Bool {
         for ignore in ignoredPaths{
-            if path.containsString(ignore){
+            if path.contains(ignore){
                 if debug {
                     writeToLog("--> Ignored Path '" + path +  "' found in path " + path)
                 }
@@ -289,7 +289,7 @@ class ViewController: NSViewController {
     }
     
     //Tested
-    func hasCorrectExtension(path: String) -> Bool {
+    func hasCorrectExtension(_ path: String) -> Bool {
         for ext in extensions{
             if path.hasSuffix("." + ext){
                 return true
@@ -302,12 +302,12 @@ class ViewController: NSViewController {
     }
     
     func timeStamp() -> String {
-        let dayTimePeriodFormatter = NSDateFormatter()
+        let dayTimePeriodFormatter = DateFormatter()
         dayTimePeriodFormatter.dateFormat = "yyy-MM-dd HH:mm:ss"
-        return dayTimePeriodFormatter.stringFromDate(NSDate())
+        return dayTimePeriodFormatter.string(from: Date())
     }
     
-    func writeStatusToLog(action: String, result: Bool, dest: String ){
+    func writeStatusToLog(_ action: String, result: Bool, dest: String ){
         if result{
             //let myMutableString = NSMutableAttributedString(string: timeStamp() + " " + action + " SUCCESS "  + dest)
             //myMutableString.addAttribute(NSForegroundColorAttributeName, value: NSColor.greenColor(), range: NSRange(location:0,length:String(myMutableString).characters.count))
@@ -320,8 +320,8 @@ class ViewController: NSViewController {
         
     }
     
-    func writeToLog(statement: String){
-        logView.textStorage!.mutableString.appendString(statement + "\n")
+    func writeToLog(_ statement: String){
+        logView.textStorage!.mutableString.append(statement + "\n")
         logView.scrollRangeToVisible(NSMakeRange(logView.textStorage!.length,0))
     }
     
