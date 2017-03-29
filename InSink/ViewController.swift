@@ -15,29 +15,34 @@ class ViewController: NSViewController {
     @IBOutlet var logView: NSTextView!
     @IBOutlet var startButton: NSButton!
     @IBOutlet var stopButton: NSButton!
-    @IBOutlet var recursiveToggle: NSButton!
-    @IBOutlet var verboseToggle: NSButton!
-    @IBOutlet var extensionsTextField: NSTextField!
-    @IBOutlet var directoriesTextField: NSTextField!
-    @IBOutlet var ignoredPathsTextField: NSTextField!
+    @IBOutlet var configButton: NSButton!
 
     var	monitor	= nil as FileSystemEventMonitor?
-    var directories: [String] = []
+
     var extensions: [String] =  []
-    var ignoredPaths: [String] = []
+    var projectRoot: String = ""
+    var modules: [String] = []
+    var directories: [String] = []
+    var excludedPaths: [String] = []
+    
+    var userDefaults = UserDefaults.standard
+    
     var debug = false;
     var lastProcessedId : UInt64 = 0
     var secondPartMoveEventId = ""
     var aemUser = "admin"
     var aemPassword = "admin"
     
-    var userDefaults = UserDefaults.standard
-    
     @IBAction func start(_ sender: AnyObject) {
+        loadConfig()
+        writeToLog("Config Loaded")
+        writeToLog("Building paths to Sync")
+        buildPaths()
         writeToLog("Started Sync")
         if configIsValidToRun(){
             startButton.isEnabled = false
             stopButton.isEnabled = true
+            configButton.isEnabled = false;
             
             monitor = FileSystemEventMonitor(
                 pathsToWatch: directories,
@@ -53,6 +58,7 @@ class ViewController: NSViewController {
         monitor = nil
         startButton.isEnabled = true
         stopButton.isEnabled = false
+        configButton.isEnabled = true;
         writeToLog("Stopped Sync")
     }
     
@@ -60,34 +66,27 @@ class ViewController: NSViewController {
         clearLog()
     }
     
-    @IBAction func saveOptions(_ sender: AnyObject) {
-        extensions = parseExtensionsInput(extensionsTextField.stringValue)
-        userDefaults.set(extensionsTextField.stringValue, forKey:"extensions")
-        
-        directories = parseDirectoriesInput(directoriesTextField.stringValue)
-        userDefaults.set(directoriesTextField.stringValue, forKey:"directories")
-
-        ignoredPaths = parseDirectoriesInput(ignoredPathsTextField.stringValue)
-        userDefaults.set(ignoredPathsTextField.stringValue, forKey:"ignoredPaths")
-        
-        userDefaults.synchronize()
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    func loadConfig(){
         if(userDefaults.string(forKey: "extensions") != nil){
             self.extensions  = parseExtensionsInput(userDefaults.string(forKey: "extensions")!)
-            extensionsTextField.stringValue = userDefaults.string(forKey: "extensions")!
         }
-        if(userDefaults.string(forKey: "directories") != nil){
-            self.directories  = parseDirectoriesInput(userDefaults.string(forKey: "directories")!)
-            directoriesTextField.stringValue = userDefaults.string(forKey: "directories")!
+        if(userDefaults.string(forKey: "projectRoot") != nil){
+            self.projectRoot  = userDefaults.string(forKey: "projectRoot")!
         }
-        if(userDefaults.string(forKey: "ignoredPaths") != nil){
-            self.ignoredPaths = parseDirectoriesInput(userDefaults.string(forKey: "ignoredPaths")!)
-            ignoredPathsTextField.stringValue = userDefaults.string(forKey: "ignoredPaths")!
+        if(userDefaults.string(forKey: "modules") != nil){
+            self.modules = parseDirectoriesInput(userDefaults.string(forKey: "modules")!)
         }
+        if(userDefaults.string(forKey: "excludedPaths") != nil){
+            self.excludedPaths = parseDirectoriesInput(userDefaults.string(forKey: "excludedPaths")!)
+        }
+    }
 
+    func buildPaths(){
+        self.directories = self.modules
+        for i in 0..<self.modules.count {
+            self.directories[i] = self.projectRoot + self.modules[i].trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+            self.writeToLog("Listening on path " + self.directories[i])
+        }
     }
     
     override var representedObject: Any? {
@@ -95,20 +94,7 @@ class ViewController: NSViewController {
             // Update the view, if already loaded.
         }
     }
-    
-    //Tested
-    func parseExtensionsInput(_ input : String) -> [String]{
-        return input.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: ".", with: "").components(separatedBy: ",")
-    }
-    
-    //Tested
-    func parseDirectoriesInput(_ input : String) -> [String]{
-        var dirs = input.components(separatedBy: ",")
-        for i in 0..<dirs.count {
-            dirs[i] = dirs[i].trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-        }
-        return dirs
-    }
+
     
     func configIsValidToRun() -> Bool {
         if ( directories.count < 1){
@@ -158,7 +144,7 @@ class ViewController: NSViewController {
     }
     
     func handleEvent(_ event: FileSystemEvent) {
-        if  pathContainsJrcRoot(event.path) &&  hasCorrectExtension(event.path) && pathIsNotIgnored(event.path){
+        if  pathContainsJrcRoot(event.path) &&  hasCorrectExtension(event.path) && pathIsNotExcluded(event.path){
             if debug{
                 writeToLog("--> Handling event " + event.description)
             }
@@ -253,16 +239,32 @@ class ViewController: NSViewController {
         let url = URL(string:remote)
         let request = NSMutableURLRequest(url: url!)
         request.httpMethod = "DELETE"
-        Alamofire.request(request as! URLRequestConvertible).authenticate(user: aemUser, password: aemPassword)
-            .responseData { response in
-                if response.result.isSuccess {
-                    self.writeStatusToLog("DELETE", result: true, dest: remote)
-                }
-                if response.result.isFailure {
-                    self.writeStatusToLog("DELETE", result: false, dest: remote)
-                    self.writeToLog("Response " + String(describing: response))
-                }
+        if let uRLRequestConvertible = request as? URLRequestConvertible {
+            Alamofire.request(uRLRequestConvertible).authenticate(user: aemUser, password: aemPassword).responseData {
+                response in
+                    if response.result.isSuccess {
+                        self.writeStatusToLog("DELETE", result: true, dest: remote)
+                    }
+                    if response.result.isFailure {
+                        self.writeStatusToLog("DELETE", result: false, dest: remote)
+                        self.writeToLog("Response " + String(describing: response))
+                    }
+            }
         }
+    }
+    
+    //Tested
+    func parseExtensionsInput(_ input : String) -> [String]{
+        return input.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: ".", with: "").components(separatedBy: ",")
+    }
+    
+    //Tested
+    func parseDirectoriesInput(_ input : String) -> [String]{
+        var dirs = input.components(separatedBy: ",")
+        for i in 0..<dirs.count {
+            dirs[i] = dirs[i].trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        }
+        return dirs
     }
     
     //Tested
@@ -276,11 +278,11 @@ class ViewController: NSViewController {
         return false
     }
     
-    func pathIsNotIgnored(_ path: String) -> Bool {
-        for ignore in ignoredPaths{
-            if path.contains(ignore){
+    func pathIsNotExcluded(_ path: String) -> Bool {
+        for exclude in excludedPaths{
+            if path.contains(exclude){
                 if debug {
-                    writeToLog("--> Ignored Path '" + path +  "' found in path " + path)
+                    writeToLog("--> Excluded Path '" + path +  "' found in path " + path)
                 }
                 return false
             }
@@ -328,6 +330,5 @@ class ViewController: NSViewController {
     func clearLog(){
         logView.textStorage!.mutableString.setString("")
     }
-    
     
 }
