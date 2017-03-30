@@ -27,16 +27,16 @@ class ConfigurationPopUpController: NSViewController {
     }
     
     @IBAction func saveOptionsAndCloseWindow(_ sender: AnyObject) {
-        extensions = parseExtensionsInput(extensionsTextField.stringValue)
+        extensions = Util.sanitizeInput(extensionsTextField.stringValue)
         userDefaults.set(extensionsTextField.stringValue, forKey:"extensions")
         
         projectRoot = projectRootTextField.stringValue
         userDefaults.set(projectRootTextField.stringValue, forKey:"projectRoot")
         
-        modules = parseModulesInput(modulesTextField.stringValue)
+        modules = Util.parseCommaSepartedString(modulesTextField.stringValue)
         userDefaults.set(modulesTextField.stringValue, forKey:"modules")
         
-        excludedPaths = parseModulesInput(excludedPathsTextField.stringValue)
+        excludedPaths = Util.parseCommaSepartedString(excludedPathsTextField.stringValue)
         userDefaults.set(excludedPathsTextField.stringValue, forKey:"excludedPaths")
         
         userDefaults.synchronize()
@@ -104,7 +104,7 @@ class ConfigurationPopUpController: NSViewController {
     
     override func viewDidLoad() {
         if(userDefaults.string(forKey: "extensions") != nil){
-            self.extensions = parseExtensionsInput(userDefaults.string(forKey: "extensions")!)
+            self.extensions = Util.sanitizeInput(userDefaults.string(forKey: "extensions")!)
             extensionsTextField.stringValue = userDefaults.string(forKey: "extensions")!
         }
         if(userDefaults.string(forKey: "projectRoot") != nil){
@@ -112,29 +112,14 @@ class ConfigurationPopUpController: NSViewController {
             projectRootTextField.stringValue = userDefaults.string(forKey: "projectRoot")!
         }
         if(userDefaults.string(forKey: "modules") != nil){
-            self.modules = parseModulesInput(userDefaults.string(forKey: "modules")!)
+            self.modules = Util.parseCommaSepartedString(userDefaults.string(forKey: "modules")!)
             modulesTextField.stringValue = userDefaults.string(forKey: "modules")!
         }
         if(userDefaults.string(forKey: "excludedPaths") != nil){
-            self.excludedPaths = parseModulesInput(userDefaults.string(forKey: "excludedPaths")!)
+            self.excludedPaths = Util.parseCommaSepartedString(userDefaults.string(forKey: "excludedPaths")!)
             excludedPathsTextField.stringValue = userDefaults.string(forKey: "excludedPaths")!
         }
     }
-    
-    //Tested
-    func parseExtensionsInput(_ input : String) -> [String]{
-        return input.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: ".", with: "").components(separatedBy: ",")
-    }
-    
-    //Tested
-    func parseModulesInput(_ input : String) -> [String]{
-        var dirs = input.components(separatedBy: ",")
-        for i in 0..<dirs.count {
-            dirs[i] = dirs[i].trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-        }
-        return dirs
-    }
-    
     
 }
 

@@ -10,6 +10,7 @@
 		8D70032D1E25230400368391 /* EonilFileSystemEvents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D7003261E24F9F900368391 /* EonilFileSystemEvents.framework */; };
 		8D70032F1E25230B00368391 /* EonilFileSystemEvents.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D7003261E24F9F900368391 /* EonilFileSystemEvents.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B50ACA301E8BA78D00A46569 /* ConfigurationPopUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50ACA2F1E8BA78D00A46569 /* ConfigurationPopUpController.swift */; };
+		B50ACA3C1E8D258700A46569 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50ACA3B1E8D258700A46569 /* Util.swift */; };
 		B554D9231CDD261E0077BB59 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B554D9221CDD261E0077BB59 /* AppDelegate.swift */; };
 		B554D9251CDD261E0077BB59 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B554D9241CDD261E0077BB59 /* ViewController.swift */; };
 		B554D9271CDD261E0077BB59 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B554D9261CDD261E0077BB59 /* Assets.xcassets */; };
@@ -144,6 +145,7 @@
 /* Begin PBXFileReference section */
 		8D70031E1E24F9F900368391 /* EonilFileSystemEvents.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = EonilFileSystemEvents.xcodeproj; path = "FileSystemEvents-master/Project/EonilFileSystemEvents.xcodeproj"; sourceTree = "<group>"; };
 		B50ACA2F1E8BA78D00A46569 /* ConfigurationPopUpController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationPopUpController.swift; sourceTree = "<group>"; };
+		B50ACA3B1E8D258700A46569 /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		B554D91F1CDD261E0077BB59 /* InSink.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InSink.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B554D9221CDD261E0077BB59 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B554D9241CDD261E0077BB59 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 				B554D9281CDD261E0077BB59 /* Main.storyboard */,
 				B554D92B1CDD261E0077BB59 /* Info.plist */,
 				B50ACA2F1E8BA78D00A46569 /* ConfigurationPopUpController.swift */,
+				B50ACA3B1E8D258700A46569 /* Util.swift */,
 			);
 			path = InSink;
 			sourceTree = "<group>";
@@ -469,6 +472,7 @@
 				B50ACA301E8BA78D00A46569 /* ConfigurationPopUpController.swift in Sources */,
 				B554D9251CDD261E0077BB59 /* ViewController.swift in Sources */,
 				B554D9231CDD261E0077BB59 /* AppDelegate.swift in Sources */,
+				B50ACA3C1E8D258700A46569 /* Util.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

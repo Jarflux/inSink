@@ -75,16 +75,16 @@ class ViewController: NSViewController {
         }
         
         if(userDefaults.string(forKey: "extensions") != nil){
-            self.extensions  = parseExtensionsInput(userDefaults.string(forKey: "extensions")!)
+            self.extensions  = Util.sanitizeInput(userDefaults.string(forKey: "extensions")!)
         }
         if(userDefaults.string(forKey: "projectRoot") != nil){
             self.projectRoot  = userDefaults.string(forKey: "projectRoot")!
         }
         if(userDefaults.string(forKey: "modules") != nil){
-            self.modules = parseDirectoriesInput(userDefaults.string(forKey: "modules")!)
+            self.modules = Util.parseCommaSepartedString(userDefaults.string(forKey: "modules")!)
         }
         if(userDefaults.string(forKey: "excludedPaths") != nil){
-            self.excludedPaths = parseDirectoriesInput(userDefaults.string(forKey: "excludedPaths")!)
+            self.excludedPaths = Util.parseCommaSepartedString(userDefaults.string(forKey: "excludedPaths")!)
         }
     }
 
@@ -236,7 +236,7 @@ class ViewController: NSViewController {
             }
             if response.result.isFailure {
                 self.writeStatusToLog("PUSH", result: false, dest: remote)
-                self.writeToLog("Response " + String(describing: response))
+                self.writeToLog("Response " + String(describing: response), color: Util.red())
             }
         }
     }
@@ -254,7 +254,7 @@ class ViewController: NSViewController {
                 }
                 if response.result.isFailure {
                     self.writeStatusToLog("DELETE", result: false, dest: remote)
-                    self.writeToLog("Response " + String(describing: response))
+                    self.writeToLog("Response " + String(describing: response), color: Util.red())
                 }
                 
             }
@@ -262,20 +262,6 @@ class ViewController: NSViewController {
             
         }
         
-    }
-    
-    //Tested
-    func parseExtensionsInput(_ input : String) -> [String]{
-        return input.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: ".", with: "").components(separatedBy: ",")
-    }
-    
-    //Tested
-    func parseDirectoriesInput(_ input : String) -> [String]{
-        var dirs = input.components(separatedBy: ",")
-        for i in 0..<dirs.count {
-            dirs[i] = dirs[i].trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-        }
-        return dirs
     }
     
     //Tested
@@ -314,27 +300,21 @@ class ViewController: NSViewController {
         return false
     }
     
-    func timeStamp() -> String {
-        let dayTimePeriodFormatter = DateFormatter()
-        dayTimePeriodFormatter.dateFormat = "yyy-MM-dd HH:mm:ss"
-        return dayTimePeriodFormatter.string(from: Date())
-    }
-    
     func writeStatusToLog(_ action: String, result: Bool, dest: String ){
         if result{
-           // let myMutableString = NSMutableAttributedString(string: timeStamp() + " " + action + " SUCCESS "  + dest)
-           // myMutableString.addAttribute(NSForegroundColorAttributeName, value: NSColor.green, range: NSRange(location:0,length:String(myMutableString).characters.count))
-            writeToLog(timeStamp() + " " + action + " SUCCESS "  + dest);
+            writeToLog(Util.timeStamp() + " " + action + " SUCCESS "  + dest, color: Util.green());
         }else{
-            //let myMutableString = NSMutableAttributedString(string: timeStamp() + " " + action + " FAILED "  + dest)
-            //myMutableString.addAttribute(NSForegroundColorAttributeName, value: NSColor.red, range: NSRange(location:0,length:String(myMutableString).characters.count))
-            writeToLog(timeStamp() + " " + action + " FAILED "  + dest);
+            writeToLog(Util.timeStamp() + " " + action + " FAILED "  + dest, color: Util.red());
         }
-        
     }
     
     func writeToLog(_ statement: String){
-        logView.textStorage!.mutableString.append(statement + "\n")
+        writeToLog( statement, color: Util.black())
+    }
+    
+    func writeToLog(_ statement: String, color: NSColor){
+        let myAttributedString = NSAttributedString(string: statement + "\n", attributes: [ NSForegroundColorAttributeName: color ] )
+        logView.textStorage!.append(myAttributedString);
         logView.scrollRangeToVisible(NSMakeRange(logView.textStorage!.length,0))
     }
     
