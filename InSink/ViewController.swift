@@ -67,6 +67,13 @@ class ViewController: NSViewController {
     }
     
     func loadConfig(){
+        if(userDefaults.string(forKey: "modules") == nil){
+            userDefaults.set(userDefaults.string(forKey: "directories")!, forKey:"modules") // backwards compatible previous version
+        }
+        if(userDefaults.string(forKey: "excludedPaths") == nil){
+            userDefaults.set(userDefaults.string(forKey: "ignoredPaths")!, forKey:"excludedPaths") // backwards compatible previous version
+        }
+        
         if(userDefaults.string(forKey: "extensions") != nil){
             self.extensions  = parseExtensionsInput(userDefaults.string(forKey: "extensions")!)
         }
