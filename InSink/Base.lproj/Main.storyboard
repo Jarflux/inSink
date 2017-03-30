@@ -676,8 +676,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="666" height="258"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TVF-6K-CJh">
+                                <rect key="frame" x="101" y="14" width="112" height="33"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" id="XXz-FW-jwE"/>
+                                    <constraint firstAttribute="width" constant="100" id="wNQ-hC-gWU"/>
+                                </constraints>
+                                <buttonCell key="cell" type="push" title="Save" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="PFh-5t-Rke">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <connections>
+                                        <action selector="saveOptionsAndCloseWindow:" target="5h9-Oa-ggQ" id="ccp-p2-V4t"/>
+                                    </connections>
+                                </buttonCell>
+                            </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="NWr-Yz-HIb">
-                                <rect key="frame" x="541" y="13" width="112" height="33"/>
+                                <rect key="frame" x="213" y="14" width="112" height="33"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="pIH-Hn-7WD"/>
                                     <constraint firstAttribute="height" constant="22" id="zsV-Hs-uKx"/>
@@ -777,17 +791,37 @@ Gw
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TVF-6K-CJh">
-                                <rect key="frame" x="101" y="14" width="112" height="33"/>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XIB-45-QCQ">
+                                <rect key="frame" x="428" y="13" width="112" height="33"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="22" id="XXz-FW-jwE"/>
-                                    <constraint firstAttribute="width" constant="100" id="wNQ-hC-gWU"/>
+                                    <constraint firstAttribute="width" constant="100" id="2s1-3x-icq"/>
+                                    <constraint firstAttribute="height" constant="22" id="pht-aw-WGi"/>
                                 </constraints>
-                                <buttonCell key="cell" type="push" title="Save" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="PFh-5t-Rke">
+                                <buttonCell key="cell" type="push" title="Export" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="fdY-Ha-01X">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="exportConfig:" target="5h9-Oa-ggQ" id="Xho-NY-IIr"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6gj-HZ-TZu">
+                                <rect key="frame" x="540" y="13" width="112" height="33"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" id="DLo-dC-rdE"/>
+                                    <constraint firstAttribute="width" constant="100" id="i94-PE-Gk8"/>
+                                </constraints>
+                                <buttonCell key="cell" type="push" title="Import" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="u2u-2c-M9U">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
                                     <connections>
-                                        <action selector="saveOptionsAndCloseWindow:" target="5h9-Oa-ggQ" id="ccp-p2-V4t"/>
+                                        <action selector="importConfig:" target="5h9-Oa-ggQ" id="ur4-rx-cfl"/>
                                     </connections>
                                 </buttonCell>
                             </button>
@@ -803,14 +837,18 @@ Gw
                             <constraint firstItem="1A9-in-EAU" firstAttribute="top" secondItem="Kfb-Hp-dSb" secondAttribute="top" constant="20" id="KEy-Rr-JYA"/>
                             <constraint firstItem="bYQ-u9-mlQ" firstAttribute="baseline" secondItem="Qav-HO-sgE" secondAttribute="firstBaseline" constant="-2" id="MgS-y9-yxy"/>
                             <constraint firstItem="TVF-6K-CJh" firstAttribute="trailing" secondItem="Qav-HO-sgE" secondAttribute="trailing" constant="-439" id="OQC-je-I0T"/>
-                            <constraint firstItem="TVF-6K-CJh" firstAttribute="firstBaseline" secondItem="NWr-Yz-HIb" secondAttribute="baseline" constant="-2" id="PXK-We-xjq"/>
+                            <constraint firstItem="TVF-6K-CJh" firstAttribute="firstBaseline" secondItem="NWr-Yz-HIb" secondAttribute="baseline" constant="-1" id="PXK-We-xjq"/>
+                            <constraint firstItem="XIB-45-QCQ" firstAttribute="leading" secondItem="NWr-Yz-HIb" secondAttribute="trailing" constant="115" id="TOL-5b-hhP"/>
                             <constraint firstAttribute="trailing" secondItem="Ktm-8P-XBh" secondAttribute="trailing" constant="19" id="VzY-tB-2bR"/>
-                            <constraint firstItem="NWr-Yz-HIb" firstAttribute="leading" secondItem="1A9-in-EAU" secondAttribute="leading" constant="441" id="Yfc-9o-K4b"/>
+                            <constraint firstItem="6gj-HZ-TZu" firstAttribute="leading" secondItem="XIB-45-QCQ" secondAttribute="trailing" constant="12" symbolic="YES" id="YH7-ON-Rij"/>
+                            <constraint firstItem="NWr-Yz-HIb" firstAttribute="leading" secondItem="1A9-in-EAU" secondAttribute="leading" constant="113" id="Yfc-9o-K4b"/>
                             <constraint firstAttribute="trailing" secondItem="1A9-in-EAU" secondAttribute="trailing" constant="19" id="bMx-fF-qUr"/>
+                            <constraint firstItem="XIB-45-QCQ" firstAttribute="baseline" secondItem="NWr-Yz-HIb" secondAttribute="baseline" constant="1" id="dPE-Rs-MdL"/>
                             <constraint firstItem="b1S-Nx-chB" firstAttribute="top" secondItem="bYQ-u9-mlQ" secondAttribute="bottom" constant="84" id="eIh-D9-v7r"/>
+                            <constraint firstItem="6gj-HZ-TZu" firstAttribute="baseline" secondItem="XIB-45-QCQ" secondAttribute="baseline" id="eVK-Cb-4ya"/>
                             <constraint firstItem="f6w-h1-iL8" firstAttribute="top" secondItem="Kfb-Hp-dSb" secondAttribute="top" constant="23" id="igt-nw-K5W"/>
                             <constraint firstItem="I0j-0K-bDC" firstAttribute="baseline" secondItem="k2h-qP-Qtn" secondAttribute="firstBaseline" constant="1" id="j1O-53-Bg4"/>
-                            <constraint firstItem="NWr-Yz-HIb" firstAttribute="leading" secondItem="k2h-qP-Qtn" secondAttribute="leading" constant="441" id="kai-ss-1cx"/>
+                            <constraint firstItem="NWr-Yz-HIb" firstAttribute="leading" secondItem="k2h-qP-Qtn" secondAttribute="leading" constant="113" id="kai-ss-1cx"/>
                             <constraint firstItem="TVF-6K-CJh" firstAttribute="top" secondItem="Ktm-8P-XBh" secondAttribute="bottom" constant="12" id="l2F-YA-LRe"/>
                             <constraint firstItem="1A9-in-EAU" firstAttribute="leading" secondItem="f6w-h1-iL8" secondAttribute="trailing" constant="20" id="ttg-oA-ti6"/>
                             <constraint firstItem="Ktm-8P-XBh" firstAttribute="leading" secondItem="b1S-Nx-chB" secondAttribute="trailing" constant="39" id="xpl-2n-hXU"/>
@@ -871,14 +909,14 @@ Gw
                             <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qt5-k7-rmq">
                                 <rect key="frame" x="20" y="20" width="1360" height="826"/>
                                 <clipView key="contentView" id="4A6-r7-fcH">
-                                    <rect key="frame" x="1" y="1" width="1343" height="824"/>
+                                    <rect key="frame" x="1" y="1" width="1358" height="824"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textView editable="NO" importsGraphics="NO" usesFontPanel="YES" findStyle="panel" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" smartInsertDelete="YES" id="890-u0-13g">
-                                            <rect key="frame" x="0.0" y="0.0" width="1343" height="824"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="1358" height="824"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <size key="minSize" width="1343" height="824"/>
+                                            <size key="minSize" width="1358" height="824"/>
                                             <size key="maxSize" width="1378" height="10000000"/>
                                             <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                         </textView>
@@ -890,7 +928,7 @@ Gw
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="Y3S-oz-ZuB">
-                                    <rect key="frame" x="1344" y="1" width="15" height="824"/>
+                                    <rect key="frame" x="1343" y="1" width="16" height="824"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
