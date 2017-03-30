@@ -229,35 +229,39 @@ class ViewController: NSViewController {
         let request = NSMutableURLRequest(url: url!)
         request.httpMethod = "PUT"
         request.httpBody = try? Data(contentsOf: URL(fileURLWithPath: path))
-        Alamofire.upload(URL(fileURLWithPath: path), to: url!, method: .put).authenticate(user: aemUser, password: aemPassword)
-            .responseData { response in
-                if response.result.isSuccess {
-                    self.writeStatusToLog("PUSH", result: true, dest: remote)
-                }
-                if response.result.isFailure {
-                    self.writeStatusToLog("PUSH", result: false, dest: remote)
-                    self.writeToLog("Response " + String(describing: response))
-                }
+        Alamofire.upload(URL(fileURLWithPath: path), to: url!, method: .put).authenticate(user: aemUser, password: aemPassword).validate(statusCode: 200..<300).responseData {
+            response in
+            if response.result.isSuccess {
+                self.writeStatusToLog("PUSH", result: true, dest: remote)
+            }
+            if response.result.isFailure {
+                self.writeStatusToLog("PUSH", result: false, dest: remote)
+                self.writeToLog("Response " + String(describing: response))
+            }
         }
     }
     
     func removeFileFromRemote(_ path : String){
         let remote = "http://localhost:4502" + getJrcPath(path)
         let url = URL(string:remote)
-        let request = NSMutableURLRequest(url: url!)
-        request.httpMethod = "DELETE"
-        if let uRLRequestConvertible = request as? URLRequestConvertible {
-            Alamofire.request(uRLRequestConvertible).authenticate(user: aemUser, password: aemPassword).responseData {
+        var request = URLRequest(url: url!)
+        request.httpMethod = "DELETE";
+        do{
+            Alamofire.request(try URLEncoding.default.encode(request, with: nil)).authenticate(user: aemUser, password: aemPassword).validate(statusCode: 200...404).responseData {
                 response in
-                    if response.result.isSuccess {
-                        self.writeStatusToLog("DELETE", result: true, dest: remote)
-                    }
-                    if response.result.isFailure {
-                        self.writeStatusToLog("DELETE", result: false, dest: remote)
-                        self.writeToLog("Response " + String(describing: response))
-                    }
+                if response.result.isSuccess {
+                    self.writeStatusToLog("DELETE", result: true, dest: remote)
+                }
+                if response.result.isFailure {
+                    self.writeStatusToLog("DELETE", result: false, dest: remote)
+                    self.writeToLog("Response " + String(describing: response))
+                }
+                
             }
+        } catch {
+            
         }
+        
     }
     
     //Tested
@@ -318,12 +322,12 @@ class ViewController: NSViewController {
     
     func writeStatusToLog(_ action: String, result: Bool, dest: String ){
         if result{
-            //let myMutableString = NSMutableAttributedString(string: timeStamp() + " " + action + " SUCCESS "  + dest)
-            //myMutableString.addAttribute(NSForegroundColorAttributeName, value: NSColor.greenColor(), range: NSRange(location:0,length:String(myMutableString).characters.count))
+           // let myMutableString = NSMutableAttributedString(string: timeStamp() + " " + action + " SUCCESS "  + dest)
+           // myMutableString.addAttribute(NSForegroundColorAttributeName, value: NSColor.green, range: NSRange(location:0,length:String(myMutableString).characters.count))
             writeToLog(timeStamp() + " " + action + " SUCCESS "  + dest);
         }else{
-           // let myMutableString = NSMutableAttributedString(string: timeStamp() + " " + action + " FAILED "  + dest)
-           // myMutableString.addAttribute(NSForegroundColorAttributeName, value: NSColor.redColor(), range: NSRange(location:0,length:String(myMutableString).characters.count))
+            //let myMutableString = NSMutableAttributedString(string: timeStamp() + " " + action + " FAILED "  + dest)
+            //myMutableString.addAttribute(NSForegroundColorAttributeName, value: NSColor.red, range: NSRange(location:0,length:String(myMutableString).characters.count))
             writeToLog(timeStamp() + " " + action + " FAILED "  + dest);
         }
         
